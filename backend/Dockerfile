@@ -1,15 +1,23 @@
-# Dockerfile for Django
-FROM python:3.10-slim
+# Use an official Python runtime as a parent image
+FROM python:3.9-slim
 
-# Set working directory
+# Set the working directory in the container
 WORKDIR /app
 
-# Install dependencies
-COPY requirements.txt /app/
-RUN pip install -r requirements.txt
+# Install PostgreSQL client utilities
+RUN apt-get update && apt-get install -y postgresql-client netcat-openbsd
 
-# Copy project files
-COPY . /app/
+# Copy the current directory contents into the container at /app
+COPY . /app
 
-# Run the application
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Ensure the wait-for-it script has the necessary permissions
+# RUN chmod +x /app/wait-for-it.sh
+
+# Make the entrypoint script executable
+RUN chmod +x /app/entrypoint.sh
+
+# Install any needed packages specified in requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Set the entrypoint to the script
+ENTRYPOINT ["/app/entrypoint.sh"]
