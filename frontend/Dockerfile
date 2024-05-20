@@ -1,18 +1,20 @@
-# Dockerfile for React
+# Use the official Node.js image as the base image
 FROM node:16
 
-# Set working directory
+# Set the working directory
 WORKDIR /app
 
+# Copy the package.json and package-lock.json files to the working directory
+COPY horizon-ui-chakra/package.json ./
+
 # Install dependencies
-COPY package.json /app/
 RUN npm install
 
-# Copy project files
-COPY . /app/
+# Copy the rest of the application code to the working directory
+COPY horizon-ui-chakra .
 
-# Build the application
-RUN npm run build
+# Expose the port the app runs on
+EXPOSE 3000
 
-# Serve the application
-CMD ["npx", "serve", "-s", "build"]
+# Start the application
+CMD ["npm", "start"]
