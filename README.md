@@ -29,6 +29,7 @@ Ensure the entrypoint.sh, and init-db.sh scripts are in the backend directory an
 ```
    chmod +x backend/entrypoint.sh
    chmod +x backend/init-db.sh
+   chmod +x backend/wait-for-it.sh
 ```    
 Clean Up Docker Volumes: Remove any existing Docker volumes to ensure a fresh start.
 ```

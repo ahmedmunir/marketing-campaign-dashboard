@@ -4,7 +4,7 @@
 set -e
 
 # Wait for the PostgreSQL service to be ready
-# /app/wait-for-it.sh db -- echo "Postgres is up - continuing"
+/app/wait-for-it.sh db -- echo "Postgres is up - continuing"
 
 # Apply database migrations
 python manage.py migrate

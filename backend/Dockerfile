@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y postgresql-client netcat-openbsd
 COPY . /app
 
 # Ensure the wait-for-it script has the necessary permissions
-# RUN chmod +x /app/wait-for-it.sh
+RUN chmod +x /app/wait-for-it.sh
 
 # Make the entrypoint script executable
 RUN chmod +x /app/entrypoint.sh
