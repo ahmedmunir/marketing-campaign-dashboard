@@ -1,20 +1,23 @@
-# Use the official Node.js image as the base image
+# Use an official Node runtime as a parent image
 FROM node:16
 
 # Set the working directory
-WORKDIR /app
+WORKDIR /usr/src/app
 
-# Copy the package.json and package-lock.json files to the working directory
-COPY horizon-ui-chakra/package.json ./
+# Copy package.json and package-lock.json
+COPY package*.json ./
 
 # Install dependencies
 RUN npm install
 
-# Copy the rest of the application code to the working directory
-COPY horizon-ui-chakra .
+# Copy the rest of the application code
+COPY . .
 
-# Expose the port the app runs on
-EXPOSE 3000
+# Build the React app
+RUN npm run build
 
-# Start the application
-CMD ["npm", "start"]
+# Install serve to serve the production build
+RUN npm install -g serve
+
+# Set the command to run the app using serve
+CMD ["serve", "-s", "build"]
