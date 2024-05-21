@@ -18,10 +18,6 @@ class CampaignViewSet(viewsets.ModelViewSet):
         else:
             campaigns = Campaign.objects.all()
 
-        print("*" * 50)
-        print("Campaigns count:", campaigns.count())
-        print("*" * 50)
-
         metrics = campaigns.aggregate(
             total_impressions=Sum('impressions'),
             total_clicks=Sum('clicks'),
