@@ -39,3 +39,9 @@ Rebuild and Run Docker Compose: Build the Docker images and start the containers
 ```
     docker-compose up --build
 ```
+
+## Postman API collection
+
+```
+    https://api.postman.com/collections/33546484-51b7048c-ab88-49ab-a213-9048729aa3e0?access_key=PMAT-01HYCKFVTZFQPXEWA8V7PZ9AD2
+```
